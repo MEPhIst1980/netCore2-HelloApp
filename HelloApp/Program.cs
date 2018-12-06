@@ -27,8 +27,14 @@ namespace HelloApp
 
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            BuildWebHost(args).Run();
         }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>()          // установка класса Startup как стартового
+            .UseWebRoot("static")   // установка папки static
+            .Build();
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
